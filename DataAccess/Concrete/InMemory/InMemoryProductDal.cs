@@ -1,8 +1,10 @@
-﻿using DataAccess.Abstract;
+﻿
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryProductDal()
         {
             _products = new List<Product> {
-                new Product{CategoryID=1,ProductID=1,ProductName="Bardak",UnitPrice=15,UnitInStock=15 },
-                new Product{CategoryID=2,ProductID=1,ProductName="Kamera",UnitPrice=500,UnitInStock=3 },
-                new Product{CategoryID=3,ProductID=2,ProductName="Telefon",UnitPrice=1500,UnitInStock=2 },
-                new Product{CategoryID=4,ProductID=2,ProductName="Klavye",UnitPrice=150,UnitInStock=65 },
-                new Product{CategoryID=5,ProductID=2,ProductName="Fare",UnitPrice=85,UnitInStock=2 }
+                new Product{CategoryID=1,ProductID=1,ProductName="Bardak",UnitPrice=15,UnitsInStock=15 },
+                new Product{CategoryID=2,ProductID=1,ProductName="Kamera",UnitPrice=500,UnitsInStock=3 },
+                new Product{CategoryID=3,ProductID=2,ProductName="Telefon",UnitPrice=1500,UnitsInStock=2 },
+                new Product{CategoryID=4,ProductID=2,ProductName="Klavye",UnitPrice=150,UnitsInStock=65 },
+                new Product{CategoryID=5,ProductID=2,ProductName="Fare",UnitPrice=85,UnitsInStock=2 }
             }; //Uygulama her çalıştığında listeye yeni eleman ekleyecek Constructor ile
         }
         public void Add(Product product)
@@ -35,7 +37,12 @@ namespace DataAccess.Concrete.InMemory
             //p tek tek dolaşırken verdiğimiz takma isim
         }
 
-        public List<Product> GetAll()
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
             return _products;
         }
@@ -51,7 +58,7 @@ namespace DataAccess.Concrete.InMemory
             Product productToUpdate = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
             productToUpdate.ProductName = product.ProductName;
             productToUpdate.CategoryID = product.CategoryID;
-            productToUpdate.UnitInStock = product.UnitInStock;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
             productToUpdate.UnitPrice = product.UnitPrice;
        
         }

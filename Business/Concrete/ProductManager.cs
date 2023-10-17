@@ -19,11 +19,19 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p => p.CategoryID == id);//verdiğimiz category ıd ye göre filtreleme yapıyo ve bize cevap döndürüyo
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);//2 fiyat aralığında olan datayı verir
+        }
+
         public List<Product> GettAll()
         {
-            //İşKodları
             return _productDal.GetAll();
-           
         }
     }
 }
