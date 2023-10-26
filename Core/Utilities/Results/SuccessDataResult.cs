@@ -12,13 +12,13 @@ namespace Core.Utilities.Results
         {
 
         }
-        public SuccessDataResult(T data,bool success):base(data,true)//mesaj yazılması istenmezse
+        public SuccessDataResult(T data,string message):base(data,true,message)//mesaj yazılması istenmezse
         {
 
         }
-        public SuccessDataResult(string message):base(default,true,message)//default=data
+        public SuccessDataResult(T data):base(data,true)//default=data
         {
-
+            
         }
         public SuccessDataResult():base(default,true)
         {
