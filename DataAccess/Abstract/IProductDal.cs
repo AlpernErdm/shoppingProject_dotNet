@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -14,6 +15,6 @@ namespace DataAccess.Abstract
     {
         //Ürüne ait özel operasyonlar için burayı kullanacağız
         List<ProductDetailDto> GetProductDetails();
-        
+
     }
 }

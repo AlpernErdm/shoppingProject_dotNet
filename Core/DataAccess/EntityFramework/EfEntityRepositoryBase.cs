@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.EntityFramework
 {
-   public class EfEntityRepositoryBase<TEntity,TContext>:IEntityRepository<TEntity>
+   public class EfEntityRepositoryBase<TEntity,TContext>:IEntityRepository<TEntity> //TEntity=Color-Car-Brand vb, TContext ise bizim projede kullandıgımız veritabanı
         where TEntity :class ,IEntity ,new()
         where TContext :DbContext,new()
     {
