@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
-    {
+    { 
         IProductDal _productDal; //Bir iş sınıfı başka sınıfları newleyemez
 
         public ProductManager(IProductDal productDal)
@@ -44,7 +44,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.CategoryID == id),true,"Kategoriler listelendi");//verdiğimiz category ıd ye göre filtreleme yapıyo ve bize cevap döndürüyo
+            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.CategoryID == id),true,Messages.CategoriesListed);//verdiğimiz category ıd ye göre filtreleme yapıyo ve bize cevap döndürüyo
         }
 
         public IDataResult<Product> GetById(int productId)
