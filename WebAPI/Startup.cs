@@ -1,3 +1,7 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +32,9 @@ namespace WebAPI
         {
 
             services.AddControllers();
+            //Singleton bellekte bi tane productmanager oluþturuyo ne kadar client gelirse ayný insteance veriyor.Ancak içinde data tutulmazsa singleton kullanýlýr
+            services.AddSingleton<IProductService,ProductManager>();//Iproductservice istenirse productmanager ver demek
+            services.AddSingleton<IProductDal, EfProductDal>();//Iproductservice productmanagereIproductdal ise efproducrdala baðýmlý olduguu için set ettik birbirlerine
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
