@@ -16,5 +16,13 @@ namespace Business.Constants
         public static string ProductNameInValid = "Geçersiz ürün ismi";
 
         public static string CategoriesListed = "Kategoriler listelendi";
+
+        public static string AddedCategory = "Kategori eklendi";
+
+        public static string NoDataInList = "Geçersiz işlem";
+
+        public static string NoDataOnFilter = "Böyle bir kategori bulunmamaktadır   ";
+
+        public static string AddedCustomer = "Müşteriler listelendi";
     }
 }

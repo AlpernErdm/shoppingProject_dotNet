@@ -35,6 +35,14 @@ namespace WebAPI
             //Singleton bellekte bi tane productmanager oluþturuyo ne kadar client gelirse ayný insteance veriyor.Ancak içinde data tutulmazsa singleton kullanýlýr
             services.AddSingleton<IProductService,ProductManager>();//Iproductservice istenirse productmanager ver demek
             services.AddSingleton<IProductDal, EfProductDal>();//Iproductservice productmanagereIproductdal ise efproducrdala baðýmlý olduguu için set ettik birbirlerine
+            services.AddSingleton<ICategoryService, CategoryManager>();//Iproductservice istenirse productmanager ver demek
+            services.AddSingleton<ICategoryDal, EfCategoryDal>();
+            services.AddSingleton<ICustomerService, CustomerManager>();
+            services.AddSingleton<ICustomerDal, EfCustomerDal>();
+            services.AddSingleton<IOrderService, OrderManager>();
+            services.AddSingleton<IOrderDal, EfOrderDal>();
+         
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });

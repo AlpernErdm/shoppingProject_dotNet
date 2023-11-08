@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,15 +20,43 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public List<Category> GetAll()
+        public IResult Add(Category category)
         {
-            //İş kodları
-            return _categoryDal.GetAll();
+            _categoryDal.Add(category);
+            return new SuccessResult(Messages.AddedCategory);
         }
 
-        public Category GetById(int categoryId)
+        public IDataResult<List<Category>> GetAll()
         {
-            return _categoryDal.Get(c => c.CategoryId == categoryId);
+            var result = _categoryDal.GetAll();
+            if (result.Count > 0)
+            {
+                return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
+            }
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.NoDataInList);
+
+        }
+
+        public IDataResult<Category> GetById(int categoryId)
+        {
+            var result = _categoryDal.Get(p => p.CategoryId == categoryId);
+            if (result != null)
+            {
+                return new SuccessDataResult<Category>(result);
+            }
+            return new SuccessDataResult<Category>(result, Messages.NoDataOnFilter);
+        }
+
+        public IResult Remove(Category category)
+        {
+            _categoryDal.Delete(category);
+            return new SuccessResult();
+        }
+
+        public IResult Update(Category category)
+        {
+            _categoryDal.Update(category);
+            return new SuccessResult();
         }
     }
 }
